@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Poll</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.poll-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.hidden {
+    display: none;
+}
+
+#result-container {
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="poll-container">
+        <h2>What's your favorite programming language?</h2>
+        <form id="poll-form">
+            <label>
+                <input type="radio" name="language" value="JavaScript">
+                JavaScript
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="language" value="Python">
+                Python
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="language" value="Java">
+                Java
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="language" value="C++">
+                C++
+            </label>
+            <br>
+            <button type="submit">Submit Vote</button>
+        </form>
+
+        <div id="result-container" class="hidden">
+            <h3>Poll Results:</h3>
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("poll-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form from submitting
+
+    const selectedOption = document.querySelector('input[name="language"]:checked');
+    if (selectedOption) {
+        const resultText = `You voted for ${selectedOption.value}.`;
+        
+        // Show result
+        document.getElementById("result").innerText = resultText;
+        document.getElementById("result-container").classList.remove("hidden");
+
+        // Optionally: Reset form after submission
+        document.getElementById("poll-form").reset();
+    } else {
+        alert("Please select an option before submitting.");
+    }
+});
+
+    </script>
+</body>
+</html>
